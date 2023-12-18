@@ -13,12 +13,12 @@ interface Frontmatter {
   stacks: string[];
   features: Feature[];
   preview: string;
-  repository: string;
+  repositories: string[];
 }
 
 const { frontmatter } = Astro.props;
 
-const { title, about, features, preview, repository, stacks } =
+const { title, about, features, preview, repositories, stacks } =
   frontmatter as Frontmatter;
 
 const slug = title.toLowerCase().replace(/'/g, "").replace(/\s/g, "-");
@@ -42,8 +42,8 @@ const hasSubtype = features.some((feature) => feature instanceof Object);
         alt="some image"
       />
       <div class="flex flex-col lg:flex-row justify-between gap-10">
-        <div class="flex-1">
-          <h3 class="text-2xl mt-10 underline">Name</h3>
+        <div class="lg:flex-1 mt-10">
+          <h3 class="text-2xl underline">Name</h3>
           <h2 class="text-4xl font-medium mt-4">{title}</h2>
 
           <h3 class="text-2xl mt-10 underline">About</h3>
@@ -72,13 +72,14 @@ const hasSubtype = features.some((feature) => feature instanceof Object);
             }
           </ul>
         </div>
-        <div class="max-w-md">
-          <h3 class="text-2xl mt-10 underline">Stack</h3>
+        <div class="max-w-md lg:mt-10">
+          <h3 class="text-2xl underline">Stack</h3>
           <Stacks {...{ stacks }} />
 
           <h3 class="text-2xl mt-10 underline">
-            {!!preview && "Preview &"}
-            {!!repository && "Repository"}
+            {!!preview && "Preview"}
+            {!!preview && !!repositories && " & "}
+            {!!repositories && "Repository"}
           </h3>
           {
             !!preview && (
@@ -96,16 +97,26 @@ const hasSubtype = features.some((feature) => feature instanceof Object);
               </div>
             )
           }
-          <div class="flex items-center gap-2 mt-4">
-            <div class="min-w-fit">
-              <Icon icon="github" />
-            </div>
-            <a
-              class="text-zinc-500 hover:text-zinc-600 underline break-all"
-              target="_blank"
-              href={repository}>{repository}</a
-            >
-          </div>
+          {
+            !!repositories && (
+              <div class="flex items-start gap-2 mt-4">
+                <div class="min-w-fit">
+                  <Icon icon="github" />
+                </div>
+                <div class="flex flex-col gap-4">
+                  {repositories.map((repository) => (
+                    <a
+                      class="text-zinc-500 hover:text-zinc-600 underline break-all block"
+                      target="_blank"
+                      href={repository}
+                    >
+                      {repository}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )
+          }
         </div>
       </div>
       <h3 class="text-2xl mt-10 underline">Screenshots</h3>

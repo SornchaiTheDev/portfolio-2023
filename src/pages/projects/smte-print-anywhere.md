@@ -19,5 +19,5 @@ stacks : [
   "firebase"
 ]
 preview : "https://letsfocus.web.app/"
-repository : "https://github.com/SornchaiTheDev/letsfocus"
+repositories : ["https://github.com/SornchaiTheDev/print-anywhere", "https://github.com/SornchaiTheDev/print-anywhere-admin"]
 ---

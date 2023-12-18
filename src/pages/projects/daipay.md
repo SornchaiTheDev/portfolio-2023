@@ -16,6 +16,6 @@ features : [
   body : ["แสกน QR Code จากนักเรียนเพื่อเติมเงิน"]
 }
 ]
-repository : https://github.com/SornchaiTheDev/Daipayapp
+repositories : [https://github.com/SornchaiTheDev/Daipayapp]
 stacks : ["reactjs" ,"firebase", "javascript","styled-components"]
 ---

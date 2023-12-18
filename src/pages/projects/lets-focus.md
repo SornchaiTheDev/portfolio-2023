@@ -15,5 +15,5 @@ stacks : [
   "firebase"
 ]
 preview : "https://letsfocus.web.app/"
-repository : "https://github.com/SornchaiTheDev/letsfocus"
+repositories : ["https://github.com/SornchaiTheDev/letsfocus"]
 ---

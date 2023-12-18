@@ -1,9 +1,8 @@
 ---
 layout : "~/layouts/project.astro"
 title : "KU Talks"
-about: "Lorem Ipsum"
-stacks : ["nextjs" , "tailwind"]
+about: "ระบบลงทะเบียนเข้าร่วมงาน KU-HUM Academic Talk Series: In Celebration of the 80th Anniversary of Kasetsart University [Nov-Dec 2023]"
+stacks : ["nextjs" , "trpc", "tailwind"]
 features : ["test","test"]
-preview: https://lab.cs.sci.ku.ac.th
-repository : https://github.com/SornchaiTheDev/cs-lab-typing
+preview: https://kutalks.ku.ac.th
 ---
