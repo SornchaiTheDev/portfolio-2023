@@ -1,20 +1,27 @@
 ---
 import type { ScreenShot } from "~/types";
-import { Image } from "astro:assets";
+import AstroImage from "~/components/astro-image.astro";
 
 interface Props {
   projectName: string;
 }
 const { projectName } = Astro.props;
 
-const getScreenshot = await Astro.glob<ScreenShot>("/src/assets/*/*.{jpeg,jpg,png,gif}");
-const screenshots = getScreenshot.filter((screenshot) => {
-  return screenshot.default.src.split("/").indexOf(projectName) > 0;
-});
+const getScreenshot = await import.meta.glob<ScreenShot>(
+  "/src/assets/*/*.{jpeg,jpg,png,gif}"
+);
+
+const screenshots = Object.keys(getScreenshot)
+  .filter((screenshot) => screenshot.includes(projectName))
+  .map((screenshot) => {
+    const fileName = screenshot.split("/").pop();
+    const path = projectName + "/" + fileName;
+    return path;
+  });
 ---
 
 {
-  screenshots?.map((screenshot) => (
-    <Image src={screenshot.default} class="rounded-3xl" alt="" />
-  ))
+  screenshots?.map((path) => {
+    return <AstroImage src={path} class="rounded-3xl" alt="" />;
+  })
 }
