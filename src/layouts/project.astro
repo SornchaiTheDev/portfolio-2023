@@ -4,13 +4,14 @@ import MainLayout from "~/layouts/main.astro";
 import Icon from "~/components/Icon.astro";
 import AstroImage from "~/components/astro-image.astro";
 import Screenshots from "~/components/screenshots.astro";
+import type { Feature } from "~/types";
 
 interface Frontmatter {
   title: string;
   coverImage: string;
   about: string;
   stacks: string[];
-  features: string[];
+  features: Feature[];
   preview: string;
   repository: string;
 }
@@ -21,17 +22,22 @@ const { title, about, features, preview, repository, stacks } =
   frontmatter as Frontmatter;
 
 const slug = title.toLowerCase().replace(/'/g, "").replace(/\s/g, "-");
+
+const hasSubtype = features.some((feature) => feature instanceof Object);
 ---
 
 <MainLayout {...{ title }}>
   <div class="p-4 lg:p-24">
-    <a href="/" class="flex w-fit items-center gap-2 mb-24 hover:text-neutral-600">
+    <a
+      href="/"
+      class="flex w-fit items-center gap-2 mb-24 hover:text-neutral-600"
+    >
       <Icon icon="back" />
       <h5>Back</h5>
     </a>
     <div class="container max-w-6xl mx-auto flex flex-col">
       <AstroImage
-        class="rounded-3xl max-h-[60vh] shadow-lg self-center w-full object-cover object-center"
+        class="rounded-3xl shadow-lg self-center w-full object-cover object-center"
         src={`${slug}/1.png`}
         alt="some image"
       />
@@ -45,8 +51,25 @@ const slug = title.toLowerCase().replace(/'/g, "").replace(/\s/g, "-");
             {about}
           </p>
           <h3 class="text-2xl mt-10 underline">Features</h3>
-          <ul class="list-disc list-inside mt-4">
-            {features?.map((stack) => <li>{stack}</li>)}
+          <ul class="list-decimal list-inside mt-4 leading-loose">
+            {
+              features?.map((feature) => {
+                if (hasSubtype) {
+                  const { topic, body } = feature;
+                  return (
+                    <li class="mt-4">
+                      {topic}
+                      <ul class="list-disc list-inside ml-4">
+                        {body?.map((subFeature) => (
+                          <li>{subFeature}</li>
+                        ))}
+                      </ul>
+                    </li>
+                  );
+                }
+                return <li class="mt-4">{feature}</li>;
+              })
+            }
           </ul>
         </div>
         <div class="max-w-md">
