@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import type { GlobImage } from "~/types/GlobImage";
+interface Props {
+  src: string;
+  alt: string;
+  [key: string]: string;
+}
+
+const { src, alt, ...other } = Astro.props;
+
+const images = import.meta.glob<GlobImage>(
+  "/src/assets/*/*.{jpeg,jpg,png,gif}"
+);
+
+const imageSrc = `/src/assets/${src}`;
+
+const _src = (await images[imageSrc]()).default;
+---
+
+<Image {...{ src: _src, alt, ...other }} />

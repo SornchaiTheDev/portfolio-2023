@@ -1,0 +1,40 @@
+---
+import Icon from "~/components/Icon.astro";
+
+interface Socials {
+  icon: string;
+  alt: string;
+  href: string;
+}
+
+const socials: Socials[] = [
+  {
+    icon: "instagram",
+    alt: "instagram icon",
+    href: "https://instagram.com/_cho_kun_",
+  },
+  {
+    icon: "github",
+    alt: "github icon",
+    href: "https://github.com/SornchaiTheDev",
+  },
+  {
+    icon: "twitter",
+    alt: "twitter icon",
+    href: "https://x.com/SornchaiTheDev",
+  },
+];
+---
+
+<div class="bg-neutral-100 flex flex-col items-center p-12 gap-4">
+  <h4>Made with 💖 for everyone</h4>
+  <div class="flex items-center gap-6 text-neutral-400">
+    {
+      socials.map(({ icon, href, alt }) => (
+        <a {...{ href, alt }} target="_blank" class="hover:text-neutral-500">
+          <Icon {...{ icon }} />
+        </a>
+      ))
+    }
+  </div>
+</div>

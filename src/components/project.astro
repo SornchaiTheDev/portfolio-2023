@@ -1,0 +1,39 @@
+---
+import Icon from "./Icon.astro";
+import { Image } from "astro:assets";
+import AstroImage from "./astro-image.astro";
+
+interface Props {
+  name: string;
+  imagePath: string;
+  projectLink: string;
+  alt: string;
+}
+
+const { name, imagePath, projectLink, alt } = Astro.props;
+---
+
+<a
+  href={projectLink}
+  class="w-full rounded-3xl shadow-md overflow-hidden group relative block col-span-12 lg:col-span-6 xl:col-span-4 aspect-video"
+  aria-label={name}
+>
+  <AstroImage
+    src={imagePath}
+    alt={alt}
+    class="w-full h-full group-hover:scale-110 transition duration-500 ease-in-out object-cover"
+    aria-hidden="true"
+    role="banner"
+  />
+
+  <div
+    class="hidden group-hover:block top-0 left-0 right-0 bottom-0 from-black/30 to-transparent bg-gradient-to-t absolute"
+  >
+  </div>
+  <div
+    class="hidden group-hover:flex absolute bottom-4 left-4 right-4 z-40 text-white justify-between items-center"
+  >
+    <h4 class="text-2xl mt-2">{name}</h4>
+    <Icon icon="openlink" />
+  </div>
+</a>

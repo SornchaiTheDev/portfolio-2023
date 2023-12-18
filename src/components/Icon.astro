@@ -1,0 +1,10 @@
+---
+interface Props {
+  icon: string;
+}
+
+const { icon } = Astro.props;
+const { default: getIcon } = await import(`../icons/${icon}.svg?raw`);
+---
+
+<Fragment set:html={getIcon} />

@@ -1,0 +1,20 @@
+---
+import type { ScreenShot } from "~/types";
+import { Image } from "astro:assets";
+
+interface Props {
+  projectName: string;
+}
+const { projectName } = Astro.props;
+
+const getScreenshot = await Astro.glob<ScreenShot>("/src/assets/*/*.{jpeg,jpg,png,gif}");
+const screenshots = getScreenshot.filter((screenshot) => {
+  return screenshot.default.src.split("/").indexOf(projectName) > 0;
+});
+---
+
+{
+  screenshots?.map((screenshot) => (
+    <Image src={screenshot.default} class="rounded-3xl" alt="" />
+  ))
+}

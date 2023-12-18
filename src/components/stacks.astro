@@ -1,0 +1,13 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  stacks: string[];
+}
+
+const { stacks } = Astro.props as Props;
+---
+
+<div class="flex items-center gap-4 mt-4">
+  {stacks?.map((stack) => <Icon icon={stack} />)}
+</div>

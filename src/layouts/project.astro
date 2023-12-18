@@ -1,0 +1,106 @@
+---
+import Stacks from "~/components/stacks.astro";
+import MainLayout from "~/layouts/main.astro";
+import Icon from "~/components/Icon.astro";
+import AstroImage from "~/components/astro-image.astro";
+import type { GlobImage } from "~/types/GlobImage";
+import Screenshots from "~/components/screenshots.astro";
+
+interface Frontmatter {
+  title: string;
+  coverImage: string;
+  about: string;
+  stacks: string[];
+  features: string[];
+  preview: string;
+  repository: string;
+}
+
+const { frontmatter } = Astro.props;
+
+const { title, about, features, preview, repository, stacks } =
+  frontmatter as Frontmatter;
+
+const slug = title.toLowerCase().replace(/'/g, "").replace(/\s/g, "-");
+---
+
+<MainLayout {...{ title }}>
+  <div class="p-4 lg:p-24">
+    <a href="/" class="flex items-center gap-2 mb-24 hover:text-neutral-600"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"></path></svg
+      >
+      <h5>Back</h5>
+    </a>
+    <div class="container max-w-6xl mx-auto flex flex-col">
+      <AstroImage
+        class="rounded-3xl max-h-[60vh] shadow-lg self-center w-full object-cover object-center"
+        src={`${slug}/1.png`}
+        alt="some image"
+      />
+      <div class="flex flex-col lg:flex-row justify-between gap-10">
+        <div class="flex-1">
+          <h3 class="text-2xl mt-10 underline">Name</h3>
+          <h2 class="text-4xl font-medium mt-4">{title}</h2>
+
+          <h3 class="text-2xl mt-10 underline">About</h3>
+          <p class="text-lg mt-4">
+            {about}
+          </p>
+          <h3 class="text-2xl mt-10 underline">Features</h3>
+          <ul class="list-disc list-inside mt-4">
+            {features?.map((stack) => <li>{stack}</li>)}
+          </ul>
+        </div>
+        <div class="max-w-md">
+          <h3 class="text-2xl mt-10 underline">Stack</h3>
+          <Stacks {...{ stacks }} />
+
+          <h3 class="text-2xl mt-10 underline">
+            {!!preview && "Preview &"}
+            {!!repository && "Repository"}
+          </h3>
+          {
+            !!preview && (
+              <div class="flex items-center gap-2 mt-4">
+                <div class="min-w-fit">
+                  <Icon icon="globe" />
+                </div>
+                <a
+                  class="text-zinc-500 hover:text-zinc-600 underline break-all"
+                  target="_blank"
+                  href={preview}
+                >
+                  {preview}
+                </a>
+              </div>
+            )
+          }
+          <div class="flex items-center gap-2 mt-4">
+            <div class="min-w-fit">
+              <Icon icon="github" />
+            </div>
+            <a
+              class="text-zinc-500 hover:text-zinc-600 underline break-all"
+              target="_blank"
+              href={repository}>{repository}</a
+            >
+          </div>
+        </div>
+      </div>
+      <h3 class="text-2xl mt-10 underline">Screenshots</h3>
+      <div class="mt-10 flex flex-col gap-10">
+        <Screenshots projectName={slug} />
+      </div>
+    </div>
+  </div>
+</MainLayout>

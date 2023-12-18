@@ -1,0 +1,51 @@
+---
+import MainLayout from "~/layouts/main.astro";
+import Project from "~/components/project.astro";
+import ContributionCalendar from "~/components/ContributionCalendar";
+
+interface Projects {
+  name: string;
+  alt: string;
+}
+
+const projects: Projects[] = [
+  { name: "CS Lab", alt: "cs lab project" },
+  { name: "KU Talks", alt: "KU Talks registeration website" },
+  { name: "Carbon Zero", alt: "Carbon Zero project" },
+  { name: "Let's Focus", alt: "Let's Focus project" },
+  { name: "SMTE Print Anywhere", alt: "SMTE Print Anywhere project" },
+  { name: "Daipay", alt: "Daipay project" },
+];
+---
+
+<MainLayout title="SornchaiTheDev">
+  <div
+    class="flex flex-col w-full justify-center items-center min-h-[60vh] px-10 gap-2"
+  >
+    <div>
+      <h1 class="text-4xl lg:text-6xl font-bold text-neutral-800 text-center">
+        SornchaiTheDev
+      </h1>
+      <h3 class="text-sm text-neutral-700 lg:text-2xl text-center mt-2">
+        Every Developer begin their journey with "Hello, World"
+      </h3>
+    </div>
+    <div class="mt-10 max-w-full">
+      <ContributionCalendar client:only />
+    </div>
+  </div>
+
+  <div class="px-4 lg:px-24">
+    <h2 class="text-4xl lg:text-5xl font-bold">Projects</h2>
+    <div class="grid grid-cols-12 gap-y-10 lg:gap-10 my-16">
+      {
+        projects.map(({ name, alt }) => {
+          const slug = name.toLowerCase().replace(/'/g, "").replace(/\s/g, "-");
+          const projectLink = `/projects/${slug}`;
+          const imagePath = `${slug}/1.png`;
+          return <Project {...{ name, projectLink, imagePath, alt }} />;
+        })
+      }
+    </div>
+  </div>
+</MainLayout>
