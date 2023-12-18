@@ -1,21 +1,62 @@
 ---
 import Footer from "./footer.astro";
 
-const { title } = Astro.props;
+interface Props {
+  title? : string;
+  description? : string;
+}
+
+const { title, description } = Astro.props;
+
+const hasTitle = title !== undefined;
+
+const pageTitle = hasTitle
+  ? `${title} | SornchaiTheDev`
+  : "SornchaiTheDev | Portfolio";
+
+const defaultDescription =
+  "Hey There 👋🏻 I'm Sornchai Somsakul (SornchaiTheDev) a Full Stack Developer who love to code";
+
+const hasDescription = description !== undefined;
 ---
 
 <html lang="en">
   <head>
+    <!-- Primary Meta Tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content={hasDescription ? description : defaultDescription}
+    />
+    <meta
+      name="keywords"
+      content="sornchaithedev, SornchaiTheDev, portfolio , พอร์ตฟอริโอ , ศรชัย สมสกุล , ศรชัย , cs-lab , cslab , kutalks, letsfocus"
+    />
+    <meta name="author" content="SornchaiTheDev" />
+
+    <!-- Open Graph / Facebook -->
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sornchaithedev.com" />
+    <meta
+      property="og:image"
+      content="https://sornchaithedev.com/images/og-image.png"
+    />
+
+    <!-- Fonts  -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Athiti:wght@200;300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Global CSS -->
     <link rel="stylesheet" href="/css/global.css" />
-    <title>SornchaiTheDev | {title}</title>
+    <title>{pageTitle}</title>
   </head>
   <body class="bg-neutral-50 min-h-screen flex flex-col justify-between">
     <slot />

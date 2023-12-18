@@ -1,6 +1,6 @@
 ---
 layout: "~/layouts/project.astro"
-title : "SMTE Print Anywhere"
+name : "SMTE Print Anywhere"
 about : "โปรเจคนี้เกิดจากปัญหาคนแออัดขณะปริ้นท์งานภายในโรงเรียน ผมจึงทำเป็นเว็บแอปพลิเคชั่นที่ให้นักเรียนสั่งปริ้นท์งานจากที่ไหนก็ได้แล้วมารับภายหลัง โดยมีสถานะต่างๆแจ้งอยู่ตลอดเพื่อง่ายต่อการเข้าไปรับ"
 features : [
   {
@@ -20,4 +20,5 @@ stacks : [
 ]
 preview : "https://letsfocus.web.app/"
 repositories : ["https://github.com/SornchaiTheDev/print-anywhere", "https://github.com/SornchaiTheDev/print-anywhere-admin"]
+published_date : "2021-12-18T00:00:00"
 ---

@@ -1,6 +1,5 @@
 ---
 import Icon from "./Icon.astro";
-import { Image } from "astro:assets";
 import AstroImage from "./astro-image.astro";
 
 interface Props {
@@ -15,7 +14,7 @@ const { name, imagePath, projectLink, alt } = Astro.props;
 
 <a
   href={projectLink}
-  class="w-full rounded-3xl shadow-md overflow-hidden group relative block col-span-12 lg:col-span-6 xl:col-span-4 aspect-video"
+  class="w-full rounded-3xl shadow-md overflow-hidden group relative block col-span-12 md:col-span-6 xl:col-span-4 aspect-video"
   aria-label={name}
 >
   <AstroImage

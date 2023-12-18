@@ -2,33 +2,43 @@
 import MainLayout from "~/layouts/main.astro";
 import Project from "~/components/project.astro";
 import ContributionCalendar from "~/components/ContributionCalendar";
+import type { ProjectFrontMatter } from "~/types";
+import { sortedBy } from "~/utils";
 
 interface Projects {
   name: string;
   alt: string;
 }
 
-const projects: Projects[] = [
-  { name: "CS Lab", alt: "cs lab project" },
-  { name: "KU Talks", alt: "KU Talks registeration website" },
-  { name: "Carbon Zero", alt: "Carbon Zero project" },
-  { name: "Let's Focus", alt: "Let's Focus project" },
-  { name: "SMTE Print Anywhere", alt: "SMTE Print Anywhere project" },
-  { name: "POS PKW Mart", alt: "POS PKW Mart project" },
-  { name: "Daipay", alt: "Daipay project" },
-  { name: "Doctor Assistant", alt: "Doctor Assistant project" },
-  { name: "Phuket Instant Print", alt: "Phuket Instant Print project" },
-];
+const getProjects = await Astro.glob<ProjectFrontMatter>("./projects/*.md");
+const projects = getProjects
+  .map((project) => project.frontmatter)
+  .sort(sortedBy("published_date", "desc"))
+  .map((project) => {
+    const { name } = project;
+    const slug = name.toLowerCase().replace(/'/g, "").replace(/\s/g, "-");
+    const projectLink = `/projects/${slug}`;
+    const imagePath = `${slug}/1.png`;
+    const alt = `${name} project`;
+    return { name, projectLink, imagePath, alt };
+  });
 ---
 
-<MainLayout title="SornchaiTheDev">
+<MainLayout>
   <div
     class="flex flex-col w-full justify-center items-center min-h-[60vh] px-10 gap-2"
   >
     <div>
-      <h1 class="text-4xl lg:text-6xl font-bold text-neutral-800 text-center">
-        SornchaiTheDev
-      </h1>
+      <div class="flex justify-center">
+        <h1
+          class="relative text-4xl lg:text-6xl font-bold text-neutral-800 text-center"
+        >
+          SornchaiTheDev
+          <span
+            class="absolute top-4 -right-1 w-3 h-3 rounded-full bg-lime-500 animate-pulse"
+          ></span>
+        </h1>
+      </div>
       <h3 class="text-sm text-neutral-700 lg:text-2xl text-center mt-2">
         Every Developer begin their journey with "Hello, World"
       </h3>
@@ -40,12 +50,9 @@ const projects: Projects[] = [
 
   <div class="px-4 lg:px-24">
     <h2 class="text-4xl lg:text-5xl font-bold">Projects</h2>
-    <div class="grid grid-cols-12 gap-y-10 lg:gap-10 my-16">
+    <div class="grid grid-cols-12 gap-y-10 md:gap-10 my-16">
       {
-        projects.map(({ name, alt }) => {
-          const slug = name.toLowerCase().replace(/'/g, "").replace(/\s/g, "-");
-          const projectLink = `/projects/${slug}`;
-          const imagePath = `${slug}/1.png`;
+        projects.map(({ name, alt, projectLink, imagePath }) => {
           return <Project {...{ name, projectLink, imagePath, alt }} />;
         })
       }

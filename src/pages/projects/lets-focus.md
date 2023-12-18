@@ -1,6 +1,6 @@
 ---
 layout: "~/layouts/project.astro"
-title : "Let's Focus"
+name : "Let's Focus"
 about : "โปรเจคนี้เกิดจากผมรู้สึกว่าสิ่งแวดล้อมต่างๆคอยรบกวนสมาธิขณะทำงาน จึงได้ทำเป็นเว็บแอปพลิเคชั่นที่ใช้เทคนิค Pomodoro ในการแบ่งเวลาทำงานและเวลาพักทำให้เราจะทำงานอย่างมีประสิทธิภาพเพิ่มมากขึ้น เพราะมีการแบ่งสัดส่วนเวลาที่ชัดเจน"
 features : [
   "จับเวลาแบบนับถอยหลังหรือนับไปข้างหน้าตามที่ต้องการ",
@@ -16,4 +16,5 @@ stacks : [
 ]
 preview : "https://letsfocus.web.app/"
 repositories : ["https://github.com/SornchaiTheDev/letsfocus"]
+published_date : "2021-12-19T00:00:00"
 ---

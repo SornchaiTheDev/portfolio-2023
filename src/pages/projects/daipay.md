@@ -1,6 +1,6 @@
 ---
 layout : "~/layouts/project.astro"
-title : "Daipay"
+name : "Daipay"
 about: "โปรเจคนี้จัดทำขึ้นเพื่อช่วยลดความเสี่ยงการติดเชื้อโควิด 19 และเพื่อส่งเสริมให้นักเรียนได้ทดลองใช้กระเป๋าเงินดิจิตอล รวมถึงการลดปัญหาเงินสดหรือคูปองหายจากการจ่ายเงินภายในโรงเรียน"
 features : [
 {
@@ -18,4 +18,5 @@ features : [
 ]
 repositories : [https://github.com/SornchaiTheDev/Daipayapp]
 stacks : ["reactjs" ,"firebase", "javascript","styled-components"]
+published_date : "2021-12-17T00:00:00"
 ---
