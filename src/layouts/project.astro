@@ -27,24 +27,39 @@ const hasSubtype = features.some((feature) => feature instanceof Object);
 ---
 
 <MainLayout title={name} description={about}>
-  <div class="p-4 lg:p-12">
-    <div class="flex justify-center">
-      <a
-        href="/"
-        class="relative block text-center font-bold text-3xl mb-12 text-neutral-800"
-        >SornchaiTheDev
-        <span
-          class="absolute top-2 w-2 h-2 rounded-full bg-lime-500 animate-pulse"
-        ></span>
-      </a>
+  <script>
+    const backToTopBtn = document.getElementById("backToTop");
+    backToTopBtn?.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+  <button
+    class="fixed right-4 bottom-4 lg:right-6 lg:bottom-6 flex flex-col items-center gap-2 group"
+    id="backToTop"
+  >
+    <div class="bg-lime-400 group-hover:bg-lime-500 p-3 w-fit rounded-full">
+      <span class="group-hover:animate-slide-up block group-hover:text-white">
+        <Icon icon="arrow-up" />
+      </span>
     </div>
-    <a
-      href="/"
-      class="flex w-fit items-center gap-2 mb-24 hover:text-neutral-600"
-    >
+  </button>
+  <div
+    class="flex fixed left-0 right-0 top-0 p-8 items-center justify-between bg-neutral-50 shadow"
+  >
+    <a href="/" class="flex w-fit items-center gap-2 hover:text-neutral-600">
       <Icon icon="back" />
       <h5>Back</h5>
     </a>
+    <a
+      href="/"
+      class="flex-1 relative block text-center font-bold text-3xl text-neutral-800"
+      >SornchaiTheDev
+      <span
+        class="absolute top-2 w-2 h-2 rounded-full bg-lime-500 animate-pulse"
+      ></span>
+    </a>
+  </div>
+  <div class="p-4 lg:p-12 mt-24">
     <div class="container max-w-6xl mx-auto flex flex-col">
       <AstroImage
         class="rounded-3xl shadow-lg self-center w-full object-cover object-center"
