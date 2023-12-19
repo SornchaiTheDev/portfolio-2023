@@ -13,8 +13,16 @@ const getScreenshot = await import.meta.glob<ScreenShot>(
 
 const screenshots = Object.keys(getScreenshot)
   .filter((screenshot) => screenshot.includes(projectName))
-  .map((screenshot) => {
-    const fileName = screenshot.split("/").pop();
+  .map((screenshot) => screenshot.split("/").pop() as string)
+  .sort((a, b) => {
+    const aFileNumber = a.split(".")[0];
+    const bFileNumber = b.split(".")[0];
+    if (aFileNumber && bFileNumber) {
+      return parseInt(aFileNumber) - parseInt(bFileNumber);
+    }
+    return 0;
+  })
+  .map((fileName) => {
     const path = projectName + "/" + fileName;
     return path;
   });
