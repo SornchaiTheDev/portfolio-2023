@@ -4,7 +4,7 @@ name : "Doctor Assistant"
 about : "โปรเจคนี้ได้แรงบันดาลใจมาจากโครงการรับยาใกล้บ้าน ร้านยาใกล้ใจ ของทางโรงพยาบาลวชิระ ภูเก็ต ที่ให้ผู้ป่วยบัตรทองสามารถรับยาได้จากร้านยาใกล้บ้านได้ โดยไม่ต้องรอคิว และไม่ต้องพบผู้คนแออัดภายในโรงพยาบาล"
 features : [
 { 
-  topic : "ผู้ป่วย" ,
+  topic : "ผู้ป่วย",
   body : [
     "รายการยาของผู้ป่วย วิธีการรับประทานและรายละเอียดของตัวยา",
     "เมนูแผนที่เพื่อหาร้านยาใกล้เคียง",
@@ -32,6 +32,6 @@ stacks : [
   "reactjs",
   "firebase"
 ]
-repositories : ["https://github.com/SornchaiTheDev/PhuketInstantPrint"]
+repositories : ["https://github.com/SornchaiTheDev/DoctorAssistant"]
 published_date : "2021-12-15T00:00:00"
 ---

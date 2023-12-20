@@ -12,6 +12,6 @@ stacks : [
   "reactjs",
   "firebase"
 ]
-repositories : ["https://github.com/SornchaiTheDev/PhuketInstantPrint"]
+repositories : ["https://github.com/SornchaiTheDev/PKWMart"]
 published_date : "2021-12-16T00:00:00"
 ---

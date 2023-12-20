@@ -9,6 +9,7 @@ features : [
 ]
 stacks : [
   "php",
+  "bootstrap"
 ]
 repositories : ["https://github.com/SornchaiTheDev/PhuketInstantPrint"]
 published_date : "2021-12-14T00:00:00"

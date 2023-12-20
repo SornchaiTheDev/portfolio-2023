@@ -18,7 +18,7 @@ stacks : [
   "reactjs",
   "firebase"
 ]
-preview : "https://letsfocus.web.app/"
+preview : "https://smte-printanywhere.web.app"
 repositories : ["https://github.com/SornchaiTheDev/print-anywhere", "https://github.com/SornchaiTheDev/print-anywhere-admin"]
 published_date : "2021-12-18T00:00:00"
 ---
